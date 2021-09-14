@@ -1,0 +1,16 @@
+{
+    "parameter":
+    {
+        "locol_server":"True",
+        "local_uri": "mysql://root:@localhost/codinninja",
+        "pord_uri": " mysql://root:@localhost/codinninja",
+        "fb_uri": "https://facebook.com/thecodingninja",
+        "tw_uri": "https://twitter.com/thecodingninja",
+        "gh_uri": "https://github.com/thecodingninja",
+        "title": "Coding ninja",
+        "my_mail": "bpaloi5555@gmail.com",
+        "my_emil_password": "biswajitpaloi10",
+        "my name":"Biswajit paloi(Admin)",
+        "no_of_post":2
+    }
+}

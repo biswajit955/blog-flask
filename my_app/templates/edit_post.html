@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- Page Header-->
+<header class="masthead"style="background-image: url({{url_for('static',filename='img/home-bg.jpg')   }} )">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>{{parameter['title']}}</h1>
+                    <span class="subheading">A Blog Theme by Start coding</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content-->
+
+<form style="margin: 0px 300px;" name="sentMessage" id="contactForm" action="/post/{{slno}}" method="post" novalidate>
+    <div class="control-group">
+      <div class="form-group floating-label-form-group controls">
+        <label>Title</label>
+        <input type="text" class="form-control" placeholder="Name" value="{{post.title}}" id="name" name='title' required
+          data-validation-required-message="Please enter your name.">
+        <p class="help-block text-danger"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="form-group floating-label-form-group controls">
+        <label>Subtitle</label>
+        <input type="text" class="form-control" placeholder="Email Address" value="{{post.subtitle}}" id="email" name="subtitle" required
+          data-validation-required-message="Please enter your email address.">
+        <p class="help-block text-danger"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="form-group floating-label-form-group controls">
+        <label>Slug</label>
+        <input type="text" class="form-control" placeholder="Email Address" value="{{post.slug}}" id="email" name="slug" required
+          data-validation-required-message="Please enter your email address.">
+        <p class="help-block text-danger"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="form-group col-xs-12 floating-label-form-group controls">
+        <label>Image file</label>
+          <label>Image file</label><br>
+          <input class="form-control" type="file" id="img_file" name="img_file" value="{{post.img_file}}" accept="image/*">
+        <p class="help-block text-danger"></p>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="form-group floating-label-form-group controls">
+        <label>Content</label>
+        <textarea rows="5" class="form-control" placeholder="Message" value="{{post.content}}" name="content" id="content">{{post.content}}</textarea>
+        <p class="help-block text-danger"></p>
+      </div>
+    </div>
+    <br>
+    <div id="success"></div>
+    <div class="form-group" >
+      <a class="btn btn-primary text-uppercase" href="/dasbord">Back</a>
+      <button type="submit" style="margin-left: 700px;" class="btn btn-primary" id="sendMessageButton">Submit</button>
+    </div>
+  </form>
+{% endblock%}

@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block content %}
+<header class="masthead"style="background-image: url({{url_for   ('static',filename
+='img/home-bg.jpg')   }} )">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>{{parameter['title']}}</h1>
+                    <span class="subheading">A Blog Theme by Start coding</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content-->
+<h2 style="padding-left: 664px;">Add new post</h2>
+<div style="width: 13%; margin-left: 654px;"  class="row">
+  <a href="/post/0" class="button">ADD NEW POST</a>
+</div>
+<br>
+<hr style="border: 1px solid black; width: 50.5%; margin-left: 26.2%;">
+<hr style="border: 1px solid black; width: 50.5%; margin-left: 26.2%;">
+<br>
+<br>
+<table style="font-family: arial, sans-serif;
+border-collapse: collapse;
+width: 50%; margin-left:400px ;">
+    <tr class="table-r">
+      <th class="table-h-d">sl.no</th>
+      <th class="table-h-d">Title</th>
+      <th class="table-h-d">Date</th>
+      <th class="table-h-d">Edit</th>
+      <th class="table-h-d">Delete</th>
+    </tr>
+    {%for post in post %}
+    <tr class="table-r">
+      <td class="table-h-d">{{post.slno}}</td>
+      <td class="table-h-d">{{post.title}}</td>
+      <td class="table-h-d">{{post.date}}</td>
+      <td class="table-h-d "><a href="/post/{{post.slno}}" class="button"> Edit</a></td>
+      <td class="table-h-d "><a href="/delete/{{post.slno}}" class="button"> Delete</a></td>
+    </tr>
+    {%endfor%}
+  </table>
+  
+{% endblock%}
