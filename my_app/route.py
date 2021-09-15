@@ -70,7 +70,7 @@ def home():
 def Pagination():
     posts = Posts.query.filter_by().all()
     last = math.ceil(len(posts)/int(parameter['no_of_post']))
-    page = request.args.get('page', 1, type=int)
+    page = request.args.get('page')
     if (not str(page).isnumeric()):
         page = 1
     page = int(page)
