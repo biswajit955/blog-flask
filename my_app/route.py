@@ -1,4 +1,5 @@
 from my_app import app
+from my_app import db
 from flask import request,render_template,redirect
 from flask_mail import Mail, Message
 from flask_sqlalchemy import SQLAlchemy
@@ -6,11 +7,19 @@ from datetime import datetime
 import json
 import math
 
-db = SQLAlchemy(app)
+
+
 local_server=True
 
 with open('my_app/nilu.json', 'r') as c:
     parameter= json.load(c)["parameter"]
+
+if(local_server):
+    app.config['SQLALCHEMY_DATABASE_URI'] = parameter['local_uri']
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = parameter['prod_uri']
+
+
 
 # app.config.update(dict(
     # MAIL_SERVER = 'smtp.gmail.com',
@@ -21,11 +30,6 @@ with open('my_app/nilu.json', 'r') as c:
 # ))
 
 # mail = Mail(app)
-
-if(local_server):
-    app.config['SQLALCHEMY_DATABASE_URI'] = parameter['local_uri']
-else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = parameter['prod_uri']
 
 
 class Posts(db.Model):
@@ -66,7 +70,7 @@ def home():
 def Pagination():
     posts = Posts.query.filter_by().all()
     last = math.ceil(len(posts)/int(parameter['no_of_post']))
-    page = request.args.get('page')
+    page = request.args.get('page', 1, type=int)
     if (not str(page).isnumeric()):
         page = 1
     page = int(page)
